@@ -1,0 +1,21 @@
+#users.show
+  %h1{ style: "background-image: url(#{image_path @user.gravatar_url})" }= "Hallo #{@user.first_name}"
+  = link_to "&times;".html_safe, :users, class: 'button alert back'
+
+  .row{ data: { equalizer: true, 'equalize-on' => 'small' }}
+    - Product.in_order.each do |product|
+      .small-6.columns
+        = link_to product.name, orders_path(order: { user_id: @user, product_id: product }), method: :post, class: 'button large expanded text-center'
+
+  .row
+    .small-12.columns
+      %h3
+        .clearfix
+          .float-left Dein Kontostand:
+          .float-right
+            %strong{ class: "#{@user.calculated_budget < 0 ? 'red' : 'green'}" }= number_to_currency @user.calculated_budget
+
+  .row
+    - [1, 2, 5, 10].each do |amount|
+      .small-6.columns
+        = link_to "#{amount} €", pay_user_path(id: @user.id, amount: amount), method: :patch, class: 'button large expanded text-center'

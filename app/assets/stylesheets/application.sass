@@ -1,0 +1,39 @@
+@import 'foundation_and_overrides'
+
+body
+  overflow: hidden
+
+  h1
+    line-height: 42px
+    padding: 0
+    text-align: center
+    margin: 10px
+
+#flashes
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  z-index: 99
+
+#users
+  &.show
+    a
+      &.back
+        position: absolute
+        top: 0
+        right: 0
+
+    h1
+      background-position: left
+      background-repeat: no-repeat
+      background-size: contain
+
+    h3
+      margin: 10px 0
+
+      strong
+        &.red
+          color: map-get($foundation-palette, alert)
+        &.green
+          color: map-get($foundation-palette, success)

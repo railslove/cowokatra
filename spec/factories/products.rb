@@ -8,6 +8,7 @@
 #  price      :decimal(6, 2)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  order      :integer          default("0")
 #
 
 FactoryGirl.define do

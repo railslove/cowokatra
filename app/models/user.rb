@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :email, presence: true, uniqueness: true
 
-  def calculated_budget
-    budget - orders.sum(:price)
+  def pay(amount)
+    update budget: budget + amount.to_f
   end
 end

@@ -24,4 +24,12 @@ RSpec.describe Order, type: :model do
 
     expect(user.updated_at).to be > user_last_updated
   end
+
+  it 'should pull the price of the product' do
+    product = create :product, price: 99.12
+
+    order = create :order, product: product
+
+    expect(order.price).to eq 99.12
+  end
 end

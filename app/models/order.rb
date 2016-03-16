@@ -14,9 +14,17 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :product
 
+  validates :user, presence: true
+  validates :product, presence: true
+
+  before_create :pull_price
   after_create :touch_user
 
   private
+
+  def pull_price
+    self.price = product.price
+  end
 
   def touch_user
     user.touch
