@@ -8,12 +8,14 @@
 #  email      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  budget     :decimal(6, 2)    default("0.0")
 #
 
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it { should have_many(:orders) }
-  it { should have_many(:deducted_orders) }
-  it { should have_many(:remaining_orders) }
+
+  it { should validate_presence_of :first_name }
+  it { should validate_presence_of :email }
 end

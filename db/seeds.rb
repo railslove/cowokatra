@@ -1,7 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'json'
+
+Product.create! name: 'Espresso & Kleine Tasse', price: 1.0
+Product.create! name: 'Doppelter Espresso & Große Tasse', price: 2.0
+
+JSON.parse(Net::HTTP.get(URI('https://www.railslove.com/api/people'))).each do |user|
+  User.create! first_name: user['name'], email: user['email']
+end

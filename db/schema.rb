@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316091043) do
+ActiveRecord::Schema.define(version: 20160316104227) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "product_id"
     t.decimal  "price",      precision: 6, scale: 2
-    t.boolean  "deducted"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end
@@ -34,8 +33,9 @@ ActiveRecord::Schema.define(version: 20160316091043) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.decimal  "budget",     precision: 6, scale: 2, default: 0.0
   end
 
 end

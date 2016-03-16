@@ -1,0 +1,15 @@
+#users.index
+  .row
+    .small-12.columns
+      %h1 Alle Benutzer
+
+  .row
+    - @users.each do |user|
+      .small-4.columns.text-center
+        = link_to user do
+          .thumbnail= image_tag user.gravatar_url
+
+  .row
+    .small-12.text-center
+      = will_paginate @users, renderer: FoundationPagination::Rails
+
