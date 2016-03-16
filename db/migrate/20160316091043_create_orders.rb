@@ -4,7 +4,6 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :user_id
       t.integer :product_id
       t.decimal :price, precision: 6, scale: 2
-      t.boolean :deducted
 
       t.timestamps null: false
     end
