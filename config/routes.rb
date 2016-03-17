@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     end
   end
   resources :orders, only: %i(create)
+  resources :cards, only: %i(show new create)
 end

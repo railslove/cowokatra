@@ -1,0 +1,14 @@
+#cards.new
+  .row
+    .small-12.columns
+      %h1 Karte zuweisen
+
+  .row
+    - @users.each do |user|
+      .small-4.columns.text-center
+        = link_to cards_path(card: { card_id: @card.card_id, user_id: user.id }), method: :post do
+          .thumbnail= image_tag user.gravatar_url
+
+  .row
+    .small-12.text-center
+      = will_paginate @users, renderer: FoundationPagination::Rails

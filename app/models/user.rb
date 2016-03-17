@@ -13,6 +13,7 @@
 
 class User < ActiveRecord::Base
   has_many :orders
+  has_many :cards
 
   validates :first_name, presence: true
   validates :email, presence: true, uniqueness: true
