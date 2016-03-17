@@ -6,3 +6,5 @@ rvm:
 script: bundle exec rake
 before_script:
   - mv config/secrets.travis.yml config/secrets.yml
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
