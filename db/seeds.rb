@@ -1,4 +1,5 @@
 require 'json'
+require 'net/http'
 
 Product.create! name: 'Kleines Getränk', price: 1.0, order: 1
 Product.create! name: 'Großes Getränk', price: 2.0, order: 2
