@@ -2,9 +2,9 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new order_params
     if @order.save!
-      redirect_to user_path(id: order_params[:user_id]), notice: 'OM NOM NOM'
+      redirect_to user_path(id: order_params[:user_id]), notice: "#{@order.product.name} gebucht"
     else
-      redirect_to user_path(id: order_params[:user_id]), alert: 'BOOM! Do it again!'
+      redirect_to user_path(id: order_params[:user_id]), alert: '¡ NIETE !'
     end
   end
 

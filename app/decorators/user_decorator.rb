@@ -13,4 +13,8 @@ class UserDecorator < ApplicationDecorator
   def calculated_budget
     object.budget - object.orders.sum(:price)
   end
+
+  def initials
+    "#{object.first_name.try(:first)}#{object.last_name.try(:first)}"
+  end
 end
