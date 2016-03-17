@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160316164417) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cards", force: :cascade do |t|
     t.string   "user_id"
     t.string   "card_id"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160316164417) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "cards", ["card_id"], name: "index_cards_on_card_id"
+  add_index "cards", ["card_id"], name: "index_cards_on_card_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
