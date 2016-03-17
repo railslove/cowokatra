@@ -7,7 +7,7 @@ class UserDecorator < ApplicationDecorator
 
   def gravatar_url
     gravatar_id = Digest::MD5.hexdigest(object.email.downcase)
-    "http://gravatar.com/avatar/#{gravatar_id}.png"
+    "//gravatar.com/avatar/#{gravatar_id}.png"
   end
 
   def calculated_budget
