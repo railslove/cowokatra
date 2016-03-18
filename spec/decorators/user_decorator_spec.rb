@@ -5,9 +5,9 @@ describe UserDecorator do
 
   it { expect(user.name).to eq "#{user.first_name} #{user.last_name}" }
   it 'should calculate the budget correctly' do
-    user.update budget: 12
+    create_list :payment, 7, user: user, amount: 2.47
     create_list :order, 5, user: user, price: 12.34
 
-    expect(user.calculated_budget).to eq(-49.70)
+    expect(user.calculated_budget).to eq(-44.41)
   end
 end

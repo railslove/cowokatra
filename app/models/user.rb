@@ -13,12 +13,9 @@
 
 class User < ActiveRecord::Base
   has_many :orders
-  has_many :cards
+  has_many :cards, dependent: :destroy
+  has_many :payments
 
   validates :first_name, presence: true
   validates :email, presence: true, uniqueness: true
-
-  def pay(amount)
-    update budget: budget + amount.to_f
-  end
 end

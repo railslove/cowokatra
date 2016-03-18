@@ -18,4 +18,4 @@
   .row
     - [1, 2, 5, 10].each do |amount|
       .small-6.columns
-        = link_to number_to_currency(amount), pay_user_path(id: @user.id, amount: amount), method: :patch, class: 'button large expanded text-center', disable_with: number_to_currency(amount)
+        = link_to number_to_currency(amount), payments_path(payment: { user_id: @user.id, amount: amount }), method: :create, class: 'button large expanded text-center', disable_with: number_to_currency(amount)

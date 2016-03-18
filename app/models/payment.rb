@@ -1,16 +1,17 @@
 # == Schema Information
 #
-# Table name: cards
+# Table name: payments
 #
 #  id         :integer          not null, primary key
-#  user_id    :string
-#  card_id    :string
+#  user_id    :integer
+#  amount     :decimal(6, 2)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Card < ActiveRecord::Base
+class Payment < ActiveRecord::Base
   belongs_to :user
 
-  validates :card_id, presence: true, uniqueness: true
+  validates :user, presence: true
+  validates :amount, presence: true
 end

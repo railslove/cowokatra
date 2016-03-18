@@ -16,12 +16,8 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   it { should have_many(:orders) }
   it { should have_many(:cards) }
+  it { should have_many(:payments) }
 
   it { should validate_presence_of :first_name }
   it { should validate_presence_of :email }
-
-  describe 'pay' do
-    let(:user) { create :user }
-    it { expect { user.pay(2) }.to change { user.budget }.from(0.0).to(2.0) }
-  end
 end

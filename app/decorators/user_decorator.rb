@@ -11,7 +11,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def calculated_budget
-    object.budget - object.orders.sum(:price)
+    object.payments.sum(:amount) - object.orders.sum(:price)
   end
 
   def initials
