@@ -1,8 +1,15 @@
 #users.show
-  %h1
-    .avatar= @user.user_image
-    -#= "Hallo #{@user.first_name}"
-  = link_to "&times;".html_safe, :users, class: 'button alert back'
+  .row
+    .small-3.columns
+      = link_to :users, class: 'button alert large' do
+        = fa_icon 'arrow-left'
+      %span.show-for-medium
+        = link_to [:edit, @user], class: 'button large warning' do
+          = fa_icon :pencil
+    .small-6.columns.text-center
+      %h2= "Hallo #{@user.first_name}"
+    .small-3.columns.text-right
+      = @user.user_image
 
   .row{ data: { equalizer: true, 'equalize-on' => 'small' }}
     - Product.in_order.each do |product|

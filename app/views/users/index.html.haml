@@ -1,6 +1,6 @@
 #users.index
   .row
-    .small-12.columns
+    .columns.text-center
       %h1 Alle Benutzer
 
   .row
@@ -10,6 +10,10 @@
           = user.user_image
 
   .row
-    .small-12.text-center
+    .medium-4.columns.show-for-medium.text-center
+      = link_to :new_user, class: 'button' do
+        = fa_icon :plus
+        Neuer Benutzer
+    .small-12.medium-8.text-center
       = will_paginate @users, renderer: FoundationPagination::Rails
 

@@ -1,0 +1,22 @@
+= simple_form_for @user do |f|
+  .row
+    .columns
+      = f.input :first_name
+  .row
+    .columns
+      = f.input :last_name
+  .row
+    .columns
+      = f.input :email
+  .row
+    .columns
+      = f.input :avatar_url
+  .row
+    .columns
+      = button_tag :submit, class: 'button' do
+        = fa_icon :check
+        Speichern
+      = link_to :users, class: 'button alert' do
+        = fa_icon :times
+        Abbrechen
+
