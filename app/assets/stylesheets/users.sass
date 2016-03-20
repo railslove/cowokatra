@@ -7,12 +7,22 @@
       display: inline-block
       position: relative
 
-      span.initials
-        text-transform: uppercase
-        background-color: map-get($foundation-palette, success)
-        display: inline-block
-        color: #fff
-        padding: 10px
-        position: absolute
-        left: 0
-        top: 0
+.user-image
+  width: 80px
+  height: 80px
+  overflow: hidden
+  display: inline-block
+
+  &.as-default
+    position: relative
+    $background: attr(data-fill)
+
+    .user-image--default-name
+      position: absolute
+      z-index: 2
+      top: 50%
+      text-align: center
+      width: 100%
+      color: $white
+      font-size: 18px
+      text-shadow: 0 0 3px $black

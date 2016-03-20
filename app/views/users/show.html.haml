@@ -1,5 +1,7 @@
 #users.show
-  %h1{ style: "background-image: url(#{image_path @user.gravatar_url})" }= "Hallo #{@user.first_name}"
+  %h1
+    .avatar= @user.user_image
+    -#= "Hallo #{@user.first_name}"
   = link_to "&times;".html_safe, :users, class: 'button alert back'
 
   .row{ data: { equalizer: true, 'equalize-on' => 'small' }}

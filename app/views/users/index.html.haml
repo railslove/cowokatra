@@ -6,8 +6,8 @@
   .row
     - @users.each do |user|
       .small-4.columns.text-center
-        = link_to user, style: "background-image: url(#{image_path user.gravatar_url})", class: 'user-link thumbnail' do
-          %span.initials= user.initials
+        = link_to user, class: :thumbnail do
+          = user.user_image
 
   .row
     .small-12.text-center
