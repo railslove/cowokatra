@@ -11,8 +11,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'will_paginate'
 gem 'will_paginate-foundation'
-
+gem 'font-awesome-rails'
 gem 'draper'
+gem 'simple_form'
 
 group :development, :test do
   gem 'factory_girl_rails'
