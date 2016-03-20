@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user.attributes user_params
+    @user.attributes = user_params
     if @user.save
       redirect_to @user
     else

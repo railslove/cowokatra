@@ -3,9 +3,11 @@
     .small-3.columns
       = link_to :users, class: 'button alert large' do
         = fa_icon 'arrow-left'
+        .show-for-sr Zurück
       %span.show-for-medium
         = link_to [:edit, @user], class: 'button large warning' do
           = fa_icon :pencil
+          .show-for-sr Bearbeiten
     .small-6.columns.text-center
       %h2= "Hallo #{@user.first_name}"
     .small-3.columns.text-right
@@ -27,4 +29,4 @@
   .row
     - [1, 2, 5, 10].each do |amount|
       .small-6.columns
-        = link_to number_to_currency(amount), payments_path(payment: { user_id: @user.id, amount: amount }), method: :create, class: 'button large expanded text-center', disable_with: number_to_currency(amount)
+        = link_to number_to_currency(amount), payments_path(payment: { user_id: @user.id, amount: amount }), method: :post, class: 'button large expanded text-center', disable_with: number_to_currency(amount)

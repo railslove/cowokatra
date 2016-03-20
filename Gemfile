@@ -18,6 +18,7 @@ gem 'simple_form'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
 end
 
 group :test do
