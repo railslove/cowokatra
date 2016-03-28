@@ -1,0 +1,30 @@
+#reporting.global
+  .row
+    .columns.text-center
+      %h1 Global Reporting
+
+  - cweeks = 4.times.map { |i| (i-1).week.ago.to_date.cweek }.reverse
+  .row
+    .columns &nbsp;
+    - cweeks.each do |week|
+      .columns.text-center
+        %strong= "KW #{week}"
+    .columns.text-center Balance
+
+  %br
+
+  - @users.each do |user|
+    .row.align-middle
+      .columns.text-right= user.user_image
+      - cweeks.each do |week|
+        .columns.text-center
+          - if user.payments_by_week(week) > 0
+            .payment= "+ #{number_to_currency user.payments_by_week(week)}"
+          - if user.orders_by_week(week) > 0
+            .order= "- #{number_to_currency user.orders_by_week(week)}"
+          - if user.orders_by_week(week) <= 0 && user.payments_by_week(week) <= 0
+            &ndash;
+      .columns.text-center
+        %div{ class: (user.calculated_budget >= 0 ? :payment : :order) }
+          = number_to_currency user.calculated_budget
+
