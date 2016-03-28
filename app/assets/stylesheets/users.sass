@@ -1,4 +1,25 @@
 #users
+  &.show
+    a
+      &.back
+        position: absolute
+        top: 0
+        right: 0
+
+    h1
+      background-position: left
+      background-repeat: no-repeat
+      background-size: contain
+
+    h3
+      margin: 10px 0
+
+      strong
+        &.red
+          color: map-get($foundation-palette, alert)
+        &.green
+          color: map-get($foundation-palette, success)
+
   &.index
     a.user-link
       height: 100px

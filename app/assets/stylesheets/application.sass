@@ -1,9 +1,11 @@
 @import 'foundation_and_overrides'
 @import 'font-awesome'
 @import 'users'
+@import 'reporting'
 
 body
-  overflow: hidden
+  @include breakpoint(small only)
+    overflow: hidden
 
   h1, h2
     line-height: 42px
@@ -17,24 +19,3 @@ body
   right: 0
   z-index: 99
 
-#users
-  &.show
-    a
-      &.back
-        position: absolute
-        top: 0
-        right: 0
-
-    h1
-      background-position: left
-      background-repeat: no-repeat
-      background-size: contain
-
-    h3
-      margin: 10px 0
-
-      strong
-        &.red
-          color: map-get($foundation-palette, alert)
-        &.green
-          color: map-get($foundation-palette, success)
