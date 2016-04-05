@@ -1,29 +1,35 @@
 class UserReportingDecorator < UserDecorator
   delegate_all
 
-  def payments_total
-    payments.sum(:amount)
+  def budget_by_month(report_date)
+    payments_by_month(report_date) - orders_by_month(report_date)
   end
 
-  def payments_by_week(week = Date.today.cweek, year = Date.today.year)
-    payments.where(created_at: beginning_of_week(week, year)..end_of_week(week, year)).sum(:amount)
+  def styled_budget_by_month(report_date)
+    budget = budget_by_month(report_date)
+
+    if budget != 0
+      h.content_tag(:span, h.number_to_currency(budget), class: budget > 0 ? 'payment' : 'order')
+    else
+      h.content_tag(:span, '&ndash;'.html_safe)
+    end
+  end
+
+  def payments_total
+    payments.sum(:amount)
   end
 
   def orders_total
     order.sum(:price)
   end
 
-  def orders_by_week(week = Date.today.cweek, year = Date.today.year)
-    orders.where(created_at: beginning_of_week(week, year)..end_of_week(week, year)).sum(:price)
-  end
-
   private
 
-  def beginning_of_week(week, year)
-    Date.commercial(year, week, 1)
+  def payments_by_month(report_date)
+    payments.where(created_at: report_date.beginning_of_month..report_date.end_of_month).sum(:amount)
   end
 
-  def end_of_week(week, year)
-    Date.commercial(year, week, 7)
+  def orders_by_month(report_date)
+    orders.where(created_at: report_date.beginning_of_month..report_date.end_of_month).sum(:price)
   end
 end

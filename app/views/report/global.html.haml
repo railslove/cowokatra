@@ -5,24 +5,21 @@
 
   .row
     .columns &nbsp;
-    - @reporting_weeks.each do |week|
+    - @reporting_months.each do |report_date|
       .columns.text-center
-        %strong= "KW#{week.cweek}, #{week.year}"
+        %strong= l report_date, format: '%B %Y'
     .columns.text-center Balance
 
   %br
 
   - @users.each do |user|
     .row.align-middle
-      .columns.text-right= user.user_image
-      - @reporting_weeks.each do |week|
+      .columns.text-right
+        = link_to user.object do
+          = user.user_image
+      - @reporting_months.each do |report_date|
         .columns.text-center
-          - if user.payments_by_week(week.cweek, week.year) > 0
-            .payment= "+ #{number_to_currency user.payments_by_week(week.cweek, week.year)}"
-          - if user.orders_by_week(week.cweek, week.year) > 0
-            .order= "- #{number_to_currency user.orders_by_week(week.cweek, week.year)}"
-          - if user.orders_by_week(week.cweek, week.year) <= 0 && user.payments_by_week(week.cweek, week.year) <= 0
-            &ndash;
+          = user.styled_budget_by_month(report_date)
       .columns.text-center
         %div{ class: (user.calculated_budget >= 0 ? :payment : :order) }
           = number_to_currency user.calculated_budget
