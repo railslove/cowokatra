@@ -16,7 +16,7 @@ class UserReportingDecorator < UserDecorator
   private
 
   def payments_by_month(report_date)
-    payments.where(created_at: report_date.beginning_of_month..report_date.end_of_month).sum(:amount)
+    payments.where(booked_at: report_date.beginning_of_month..report_date.end_of_month).sum(:amount)
   end
 
   def orders_by_month(report_date)

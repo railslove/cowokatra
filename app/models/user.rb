@@ -9,6 +9,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  budget     :decimal(6, 2)    default("0.0")
+#  avatar_url :string
 #
 
 class User < ActiveRecord::Base
