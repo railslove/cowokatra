@@ -12,6 +12,10 @@
 require 'rails_helper'
 
 RSpec.describe Payment, type: :model do
+  let(:subject) { create :payment }
+
   it { should belong_to :user }
   it { should validate_presence_of :amount }
+
+  it { expect(subject.booked_at).to eq subject.created_at }
 end

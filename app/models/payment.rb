@@ -15,11 +15,11 @@ class Payment < ActiveRecord::Base
   validates :user, presence: true
   validates :amount, presence: true
 
-  before_save :init_booking_date
+  after_create :init_booking_date
 
   private
 
   def init_booking_date
-    self.booked_at = Time.zone.now unless booked_at
+    update booked_at: created_at unless booked_at
   end
 end
