@@ -15,17 +15,11 @@ class Payment < ActiveRecord::Base
   validates :user, presence: true
   validates :amount, presence: true
 
-  def self.weekly(week = Date.today.cweek, year = Date.today.year)
-    select_qry = "#{table_name}.user_id,
-                  COUNT(#{table_name}.amount) AS amount"
-    beginning_of_week = Date.commercial(year, week, 1)
-    end_of_week = Date.commercial(year, week, 7)
+  before_save :init_booking_date
 
-    select(select_qry).where(created_at: beginning_of_week..end_of_week)
-                      .group(:week, :user_id).order(user_id: :desc)
-  end
+  private
 
-  def self.weekly_by_user(user_id, week = Date.today.cweek, year = Date.today.year)
-    weekly(week, year).find_by(user_id: user_id)
+  def init_booking_date
+    self.booked_at = Time.zone.now unless booked_at
   end
 end
