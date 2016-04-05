@@ -1,0 +1,8 @@
+de:
+  activerecord:
+    models:
+      payment: Zahlung
+    attributes:
+      payment:
+        amount: Betrag
+

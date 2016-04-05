@@ -18,10 +18,8 @@
         = link_to user.object do
           = user.user_image
       - @reporting_months.each do |report_date|
-        .columns.text-center
-          = user.styled_budget_by_month(report_date)
+        = render 'user_budget', user: user, report_date: report_date
       .columns.text-center
         %div{ class: (user.calculated_budget >= 0 ? :payment : :order) }
           = number_to_currency user.calculated_budget
-    %br
 

@@ -1,0 +1,14 @@
+- budget = user.budget_by_month(report_date)
+
+.user-budget.columns.text-center
+  - if budget != 0
+    %span{ class: (budget > 0 ? 'payment' : 'order') }= number_to_currency(budget)
+    - if budget < 0
+      %a{ data: { rel: "quick-form-#{user.id}-#{report_date.to_s}", behavior: 'open-quickform' }}
+        .fa-stack.fa-lg
+          %i.fa.fa-square-o.fa-stack-2x
+          %i.fa.fa-euro.fa-stack-1x
+      .quickform.hide{ data: { rel: "quick-form-#{user.id}-#{report_date.to_s}" }}
+        = render 'payments/quickform', user: user, booking_date: report_date.end_of_month, amount: budget.abs
+  - else
+    %span &ndash;
