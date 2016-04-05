@@ -8,6 +8,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'haml-rails'
 gem 'foundation-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
 gem 'turbolinks'
 gem 'will_paginate'
 gem 'will_paginate-foundation'
