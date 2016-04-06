@@ -2,6 +2,7 @@ class UserReportingDecorator < UserDecorator
   delegate_all
 
   def budget_by_month(report_date)
+    report_date = report_date.to_time
     payments_by_month(report_date) - orders_by_month(report_date)
   end
 
