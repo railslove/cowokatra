@@ -17,7 +17,7 @@ RSpec.feature 'order something', type: :feature do
     expect(find('.user-image')).to have_text 'Donald'
   end
 
-  scenario 'updeat a user' do
+  scenario 'update a user' do
     visit '/'
     click_link 'Darkwing'
     expect(page).to have_text 'Hallo Darkwing'

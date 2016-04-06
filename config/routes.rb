@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :payments, only: %i(create)
   resources :cards, only: %i(show new create)
 
-  get :report, to: 'report#global'
+  get :reporting, to: 'report#global'
 end

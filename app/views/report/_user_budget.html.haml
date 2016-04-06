@@ -1,12 +1,13 @@
 - budget = user.budget_by_month(report_date)
+- user_rel = "#{user.id}-#{report_date.strftime('%m-%Y').to_s}"
 
-.user-budget.columns.text-center
+.user-budget.columns.text-center{ data: { rel: user_rel }}
   - if budget != 0
     %span{ class: (budget > 0 ? 'payment' : 'order') }= number_to_currency(budget)
     - if budget < 0
-      %a{ data: { rel: "quick-form-#{user.id}-#{report_date.to_s}", behavior: 'open-quickform' }}
+      %a{ data: { rel: "quick-form-#{user_rel}", behavior: 'open-quickform' }}
         = fa_icon 'credit-card'
-      .quickform.hide{ data: { rel: "quick-form-#{user.id}-#{report_date.to_s}" }}
+      .quickform.hide{ data: { rel: "quick-form-#{user_rel}" }}
         = render 'payments/quickform', user: user, booking_date: report_date.end_of_month, amount: budget.abs
   - else
     %span &ndash;
