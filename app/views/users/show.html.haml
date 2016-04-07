@@ -27,6 +27,6 @@
             %strong{ class: "#{@user.calculated_budget < 0 ? 'red' : 'green'}" }= number_to_currency @user.calculated_budget
 
   .row
-    - [1, 2, 5, 10].each do |amount|
+    - [1, 1.5, 5, 10].each do |amount|
       .small-6.columns
         = link_to number_to_currency(amount), payments_path(payment: { user_id: @user.id, amount: amount }), method: :post, class: 'button large expanded text-center', disable_with: number_to_currency(amount)
