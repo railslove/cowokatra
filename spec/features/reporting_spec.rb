@@ -22,7 +22,6 @@ RSpec.feature 'order something', type: :feature do
     expect(find(".user-budget[data-rel='#{@user.id}-02-2016']")).to have_text '–'
 
     expect(find(".user-budget[data-rel='#{@user.id}-03-2016']")).to have_text '-2,00 €'
-    expect(page).to have_selector("a[data-rel='quick-form-#{@user.id}-03-2016']", visible: false)
   end
 
   scenario 'pay outstanding orders via reporting' do
@@ -30,13 +29,8 @@ RSpec.feature 'order something', type: :feature do
 
     expect(@user.payments.sum(:amount)).to eq 0
 
-    find("a[data-rel='quick-form-#{@user.id}-03-2016']").click
-
-    expect(page).to have_selector(".quickform[data-rel='quick-form-#{@user.id}-03-2016']", visible: true)
-
-    within ".quickform[data-rel='quick-form-#{@user.id}-03-2016']" do
-      fill_in 'payment[amount]', with: 2.00
-      expect { find('button').click }.to change { Payment.count }.by(1)
+    within "[data-rel=\"#{@user.id}-03-2016\"]" do
+      find('a').click
     end
 
     expect(@user.payments.sum(:amount)).to eq 2.0

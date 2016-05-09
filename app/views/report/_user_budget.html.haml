@@ -5,9 +5,7 @@
   - if budget != 0
     %span{ class: (budget > 0 ? 'payment' : 'order') }= number_to_currency(budget)
     - if budget < 0
-      %a{ data: { rel: "quick-form-#{user_rel}", behavior: 'open-quickform' }}
+      = link_to payoff_payments_path(id: user.id, month: report_date), method: :post, 'data-confirm' => "#{number_to_currency -1*budget} für #{user.name} buchen?"  do
         = fa_icon 'credit-card'
-      .quickform.hide{ data: { rel: "quick-form-#{user_rel}" }}
-        = render 'payments/quickform', user: user, booking_date: report_date.end_of_month, amount: budget.abs
   - else
     %span &ndash;

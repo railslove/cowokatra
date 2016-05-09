@@ -3,12 +3,6 @@ class UsersController < ApplicationController
   before_filter :load_user, only: %i(edit update destroy show)
   before_filter :new_user, only: %i(new create)
 
-  def pay
-    @user.pay pay_params
-
-    redirect_to @user, notice: "#{pay_params} € gebucht."
-  end
-
   def create
     @user.attributes = user_params
     if @user.save
@@ -30,10 +24,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :avatar_url)
-  end
-
-  def pay_params
-    params.permit(:amount)[:amount]
   end
 
   def load_users
