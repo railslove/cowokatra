@@ -3,12 +3,25 @@
     .columns.text-center
       %h1 Global Reporting
 
-  .row
+  .row.align-bottom
     .columns &nbsp;
-    - @reporting_months.each do |report_date|
+    - @reporting_months.each.with_index do |report_date, index|
       .columns.text-center
         %strong= l report_date, format: '%B %Y'
     .columns.text-center Balance
+
+  .row.align-bottom
+    .columns &nbsp;
+    - @reporting_months.each.with_index do |report_date, index|
+      .columns.text-center
+        %span.order
+          Bestellungen:
+          = number_to_currency @reporting[index].fetch(:orders, 0)
+        %br
+        %span.payment
+          Zahlungen:
+          = number_to_currency @reporting[index].fetch(:payments, 0)
+    .columns.text-center &nbsp;
 
   %br
 

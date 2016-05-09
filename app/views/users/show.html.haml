@@ -29,4 +29,4 @@
   .row
     - [1, 1.5, 5, 10].each do |amount|
       .small-6.columns
-        = link_to number_to_currency(amount), payments_path(payment: { amount: amount }), method: :post, class: 'button large expanded text-center', disable_with: number_to_currency(amount)
+        = link_to number_to_currency(amount), payments_path(payment: { amount: amount }), method: :post, class: 'button large secondary expanded text-center', disable_with: number_to_currency(amount)

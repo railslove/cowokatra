@@ -2,6 +2,12 @@ class ReportController < ApplicationController
   def global
     @users = UserReportingDecorator.decorate_collection User.order(first_name: :asc)
     @reporting_months = reporting_months
+    @reporting = reporting_months.map do |month|
+      {
+        orders: Order.where(created_at: month.beginning_of_month..month.end_of_month).sum(:price),
+        payments: Payment.where(booked_at: month.beginning_of_month..month.end_of_month).sum(:amount)
+      }
+    end
   end
 
   private
