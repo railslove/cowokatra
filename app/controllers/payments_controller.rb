@@ -13,13 +13,19 @@ class PaymentsController < ApplicationController
 
   def payoff
     report_date = Date.parse(payoff_params)
-    amount = @user.orders.where(created_at: report_date.beginning_of_month..report_date.end_of_month).sum(:price)
+    amount = payoff_amount
     @payment = @user.payments.create booked_at: report_date, amount: amount
 
     redirect_to :reporting
   end
 
   private
+
+  def payoff_amount
+    orders = @user.orders.where(created_at: report_date.beginning_of_month..report_date.end_of_month).sum(:price)
+    payment = @user.payments.where(created_at: report_date.beginning_of_month..report_date.end_of_month).sum(:amount)
+    orders - payments
+  end
 
   def payment_params
     params.require(:payment).permit(:amount)
