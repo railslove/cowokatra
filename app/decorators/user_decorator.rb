@@ -5,25 +5,25 @@ class UserDecorator < ApplicationDecorator
     "#{object.first_name} #{object.last_name}"
   end
 
-  def user_avatar
-    h.image_tag object.avatar_url, class: 'user-image'
-  end
-
-  def user_colored_box
-    color = Digest::MD5.hexdigest(object.first_name).first(6)
-
-    h.content_tag :div, class: 'user-image as-default ', style: "background-color: ##{color}" do
-      h.content_tag :div, class: 'user-image--default-name' do
-        object.first_name
-      end
-    end
+  def color
+    Digest::MD5.hexdigest(object.first_name).first(6)
   end
 
   def user_image
-    object.avatar_url.present? ? user_avatar : user_colored_box
+    h.content_tag :div, class: 'user-image ', style: "background-color: ##{color}; background-image: url(#{avatar_url})" do
+      yield if block_given?
+    end
   end
 
   def calculated_budget
     object.payments.sum(:amount) - object.orders.sum(:price)
+  end
+
+  def avatar_url(size = 256)
+    if object.avatar_url.present?
+      avatar_url
+    else
+      "//gravatar.com/avatar/#{Digest::MD5.hexdigest(object.email)}?s=#{size}"
+    end
   end
 end

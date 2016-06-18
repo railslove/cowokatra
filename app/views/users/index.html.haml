@@ -1,19 +1,11 @@
-#users.index
-  .row
-    .columns.text-center
-      %h1 Alle Benutzer
-
-  .row
+.flex-columns
+  .users
     - @users.each do |user|
-      .small-4.columns.text-center
-        = link_to user, class: :thumbnail do
-          = user.user_image
+      = link_to user, class: :user do
+        = user.user_image do
+          .user-name= user.name
 
-  .row
-    .medium-4.columns.show-for-medium.text-center
-      = link_to :new_user, class: 'button' do
-        = fa_icon :plus
-        Neuer Benutzer
-    .small-12.medium-8.text-center
-      = will_paginate @users, renderer: FoundationPagination::Rails
+    = link_to :new_user, class: 'new-user' do
+      = fa_icon :plus
 
+  = will_paginate @users, page_links: false
