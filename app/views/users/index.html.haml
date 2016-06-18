@@ -1,11 +1,8 @@
-.flex-columns
-  .users
-    - @users.each do |user|
-      = link_to user, class: :user do
-        = user.user_image do
-          .user-name= user.name
-
-    = link_to :new_user, class: 'new-user' do
-      = fa_icon :plus
-
-  = will_paginate @users, page_links: false
+.users.swiper-container
+  .swiper-wrapper
+    - @users.each_slice(14) do |page|
+      .users-page.swiper-slide
+        - page.each do |user|
+          = link_to user, class: :user do
+            = user.user_image do
+              .user-name= user.name

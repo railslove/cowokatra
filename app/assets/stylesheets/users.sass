@@ -1,28 +1,41 @@
-.flex-rows
+.fullsize
   width: 100vw
   height: 100vh
+
+.flex-rows
   display: flex
 
 .flex-columns
-  width: 100vw
-  height: 100vh
   display: flex
   flex-direction: column
 
-.users
-  flex-shrink: 0
+.grow
+  flex-grow: 1
+
+.tile
+  width: calc(100vh / 3)
+  height: calc(100vh / 3)
+  background-color: #e2e2e2
   display: flex
+  align-items: center
+  justify-content: center
+
+.users
+  width: 100vw
+  height: 100vh
+  background-color: #333
+
+.swiper-wrapper
+  overflow: visible
+
+.users-page
+  @extend .flex-rows
+  @extend .fullsize
   flex-wrap: wrap
-  min-height: calc((100vw / 5) * 3)
-  background-color: #f5f5f5
 
 .user
   .user-image
-    width: calc(100vw / 5)
-    height: calc(100vw / 5)
-    display: flex
-    align-items: center
-    justify-content: center
+    @extend .tile
     background-size: cover
   .user-name
     margin-top: 70%
@@ -32,32 +45,9 @@
     overflow: visible
 
 .new-user
-  width: calc(100vw / 5)
-  height: calc(100vw / 5)
-  display: flex
-  align-items: center
-  justify-content: center
-  background-color: #e2e2e2
+  @extend .tile
   .fa
     margin-top: 5%
     font-size: calc(100vw / 10)
     color: #fff
     overflow: visible
-
-
-.pagination
-  background-color: #fafafa
-  flex-grow: 1
-  display: flex
-  justify-content: center
-  .previous_page, .next_page
-    flex-grow: 1
-    color: #E2E2E2
-    font-size: 30px
-    display: flex
-    align-items: center
-    justify-content: center
-  .previous_page + .next_page
-    border-left: 1px solid #ececec
-  .disabled
-    display: none
