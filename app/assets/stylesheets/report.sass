@@ -1,0 +1,32 @@
+@import 'foundation_and_overrides'
+@import 'font-awesome'
+@import 'users'
+
+body
+  @include breakpoint(small only)
+    overflow: hidden
+
+  h1, h2
+    line-height: 42px
+    padding: 0
+    margin: 10px
+
+#flashes
+  position: absolute
+  bottom: 0
+  left: 0
+  right: 0
+  z-index: 99
+
+#reporting
+  .payment
+    color: map-get($foundation-palette, primary)
+  .order
+    color: map-get($foundation-palette, alert)
+
+  .user-budget
+    position: relative
+
+    .quickform
+      z-index: 999
+      position: absolute
