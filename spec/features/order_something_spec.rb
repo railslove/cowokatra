@@ -6,7 +6,7 @@ RSpec.feature 'order something', type: :feature do
 
   scenario 'orders a coffee' do
     visit '/'
-    click_link 'CoffeeJunkie'
+    find("a[rel=\"#{user.id}\"]").click
     expect(page).to have_text 'Hallo CoffeeJunkie'
 
     click_link 'Large Coffee'

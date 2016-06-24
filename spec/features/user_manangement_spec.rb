@@ -14,14 +14,12 @@ RSpec.feature 'order something', type: :feature do
       expect { click_button 'Speichern' }.to change { User.count }.by(1)
     end
     expect(page).to have_text 'Hallo Donald'
-    expect(find('.user-image')).to have_text 'Donald'
   end
 
   scenario 'update a user' do
     visit '/'
-    click_link 'Darkwing'
+    find("a[rel=\"#{user.id}\"]").click
     expect(page).to have_text 'Hallo Darkwing'
-    expect(find('.user-image')).to have_text 'Darkwing'
 
     click_link 'Bearbeiten'
 
@@ -31,6 +29,5 @@ RSpec.feature 'order something', type: :feature do
       expect { click_button 'Speichern' }.to_not change { User.count }
     end
     expect(page).to have_text 'Hallo Donald'
-    expect(find('.user-image')).to have_text 'Donald'
   end
 end

@@ -3,11 +3,14 @@ class PaymentsController < ApplicationController
 
   def create
     @payment = @user.payments.new payment_params
-    if @payment.save!
-      message = "#{view_context.number_to_currency @payment.amount} eingezahlt"
-      redirect_to user_path(id: @user.id), notice: message
-    else
-      redirect_to user_path(id: @user.id), alert: '¡ NIETE !'
+
+    respond_to do |format|
+      format.html do
+        result = @payment.save ? { notice: "#{view_context.number_to_currency @payment.amount} eingezahlt" } : { alert: '¡ NIETE !' }
+        redirect_to user_path(id: @user.id), result
+      end
+
+      format.json { render json: { success: @payment.save } }
     end
   end
 

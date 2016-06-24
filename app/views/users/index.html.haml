@@ -6,7 +6,7 @@
   .row
     - @users.each do |user|
       .small-4.columns.text-center
-        = link_to user, class: :thumbnail do
+        = link_to user, class: :thumbnail, rel: user.id do
           = user.user_image
 
   .row

@@ -5,7 +5,7 @@ RSpec.feature 'order something', type: :feature do
 
   scenario 'adds a payment' do
     visit '/'
-    click_link 'Richie'
+    find("a[rel=\"#{user.id}\"]").click
     expect(page).to have_text 'Hallo Richie'
 
     click_link '5,00 €'
