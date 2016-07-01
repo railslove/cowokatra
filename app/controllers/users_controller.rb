@@ -27,7 +27,9 @@ class UsersController < ApplicationController
   end
 
   def load_users
-    users = User.order(updated_at: :desc).paginate page: params[:page]
+    users = User.order(updated_at: :desc)
+    users = request.format.json? ? users : users.paginate(page: params[:page])
+
     @users = UserDecorator.decorate_collection users
   end
 
