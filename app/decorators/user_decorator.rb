@@ -19,7 +19,7 @@ class UserDecorator < ApplicationDecorator
     if object.avatar_url.present?
       object.avatar_url
     else
-      "//gravatar.com/avatar/#{Digest::MD5.hexdigest(object.email)}?s=#{size}"
+      "https://gravatar.com/avatar/#{email_digest}?s=#{size}&d=#{robohash_fallback(size)}"
     end
   end
 
@@ -30,4 +30,13 @@ class UserDecorator < ApplicationDecorator
   def calculated_budget
     object.payments.sum(:amount) - object.orders.sum(:price)
   end
+
+  def robohash_fallback(size = 256)
+    "https://robohash.org/#{email_digest}?size=#{size}x#{size}"
+  end
+
+  def email_digest
+    Digest::MD5.hexdigest(object.email)
+  end
 end
+
