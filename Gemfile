@@ -18,6 +18,7 @@ gem 'draper'
 gem 'simple_form'
 
 gem 'jbuilder'
+gem 'slack-api', require: 'slack'
 
 group :development, :test do
   gem 'factory_girl_rails'
