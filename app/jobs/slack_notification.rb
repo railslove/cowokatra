@@ -3,9 +3,9 @@ class SlackNotification
     if (username = users[email])
       client.chat_postMessage(
         channel: username,
-        text: ":money_mouth_face: your monthly coffee payment is due! Please pay #{budget} EUR in cash at the counter.",
-        username: "kope",
-        icon_emoji: ':coffee:',
+        text: "your monthly coffee payment is due! Please pay #{budget} EUR in cash at the counter.",
+        username: "cowalto",
+        icon_emoji: ':money_mouth_face:',
         as_user: false
       )
     end
